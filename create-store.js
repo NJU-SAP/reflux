@@ -5,7 +5,7 @@ export default function createStore(reducer, initialState = {}) {
     getState() { return state; },
     dispatch(action) {
       state = reducer(state, action);
-      const clonedSubscribers = subscribers.splice(0);
+      const clonedSubscribers = subscribers.slice(0);
       clonedSubscribers.forEach(subscriber => {
         subscriber.call(store);
       })
